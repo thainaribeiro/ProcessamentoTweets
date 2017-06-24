@@ -31,11 +31,12 @@ public class KeywordJob implements InterfaceJob {
 		List<Tweets> tweets = tweetsRepository.findAll();
 		for (int i = 0; i < keywords.length; i++) {
 			for (Tweets tweet : tweets) {
-				if(tweet.getKeyword().toUpperCase().contains(keywords[i].toUpperCase())) {
+				if(tweet.getKeyword() != null && tweet.getKeyword().toUpperCase().contains(keywords[i].toUpperCase())) {
 					//TODO
 					String place = StatesEnum.getState(tweet.getPlace());
 					if(place != null){
 						Keyword keyword = new Keyword();
+						keyword.setIdKeyword(tweet.getId());
 						keyword.setKeyword(tweet.getKeyword());
 						keyword.setUf(place);
 						keywordRepository.save(keyword);
