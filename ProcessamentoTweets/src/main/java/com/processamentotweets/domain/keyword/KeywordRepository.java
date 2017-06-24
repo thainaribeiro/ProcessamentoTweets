@@ -1,4 +1,4 @@
-package com.processamentotweets.domain;
+package com.processamentotweets.domain.keyword;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

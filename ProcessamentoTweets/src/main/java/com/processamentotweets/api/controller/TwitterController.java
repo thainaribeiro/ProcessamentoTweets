@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.processamentotweets.api.dto.ResponseDTO;
-import com.processamentotweets.domain.Keyword;
-import com.processamentotweets.domain.KeywordRepository;
-import com.processamentotweets.domain.Tweets;
-import com.processamentotweets.domain.TweetsRepository;
+import com.processamentotweets.domain.keyword.Keyword;
+import com.processamentotweets.domain.keyword.KeywordRepository;
+import com.processamentotweets.domain.tweets.Tweets;
+import com.processamentotweets.domain.tweets.TweetsRepository;
 import com.processamentotweets.domain.enums.StatesEnum;
 import com.processamentotweets.util.FileManager;
 
@@ -26,7 +26,7 @@ public class TwitterController {
 	private TweetsRepository tweetsRepository;
 	@Autowired
 	private KeywordRepository keywordRepository;
-	private static final String path = "/home/thaina/TCC/keywords.txt";
+	private static final String path = "/keywords.txt";
 	private final String keywords[] = new FileManager().getKeywords(path);
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/tweets")
@@ -37,11 +37,12 @@ public class TwitterController {
 			List<Tweets> tweets = tweetsRepository.findAll();
 			for (int i = 0; i < keywords.length; i++) {
 				for (Tweets tweet : tweets) {
-					if(tweet.getKeyword().toUpperCase().contains(keywords[i].toUpperCase())) {
+					if(tweet.getKeyword() != null && tweet.getKeyword().toUpperCase().contains(keywords[i].toUpperCase())) {
 						//TODO
 						String place = StatesEnum.getState(tweet.getPlace());
 						if(place != null){
 							Keyword keyword = new Keyword();
+							keyword.setIdKeyword(tweet.getId());
 							keyword.setKeyword(tweet.getKeyword());
 							keyword.setUf(place);
 							keywordRepository.save(keyword);
@@ -51,6 +52,7 @@ public class TwitterController {
 			}
 			return new ResponseEntity<List<ResponseDTO>>(responseList, HttpStatus.OK);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

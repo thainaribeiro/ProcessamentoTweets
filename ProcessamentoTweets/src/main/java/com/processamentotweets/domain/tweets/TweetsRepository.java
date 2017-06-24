@@ -1,4 +1,4 @@
-package com.processamentotweets.domain;
+package com.processamentotweets.domain.tweets;
 
 import java.util.List;
 

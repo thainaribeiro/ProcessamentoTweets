@@ -1,4 +1,5 @@
 package com.processamentotweets.jobs;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,7 @@ import org.springframework.stereotype.Component;
  @Component
  public class Jobs {
  	private final Logger log = LoggerFactory.getLogger(Jobs.class);
- 	
- 	
+
  	@Autowired
  	@Qualifier("jobsDiarios")
  	private List<InterfaceJob> jobsDiarios = new ArrayList<>();

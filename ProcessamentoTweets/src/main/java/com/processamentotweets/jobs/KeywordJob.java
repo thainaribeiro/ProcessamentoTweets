@@ -6,10 +6,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.processamentotweets.domain.Keyword;
-import com.processamentotweets.domain.KeywordRepository;
-import com.processamentotweets.domain.Tweets;
-import com.processamentotweets.domain.TweetsRepository;
+import com.processamentotweets.domain.keyword.Keyword;
+import com.processamentotweets.domain.keyword.KeywordRepository;
+import com.processamentotweets.domain.tweets.Tweets;
+import com.processamentotweets.domain.tweets.TweetsRepository;
 import com.processamentotweets.domain.enums.StatesEnum;
 import com.processamentotweets.util.FileManager;
 
@@ -22,7 +22,7 @@ public class KeywordJob implements InterfaceJob {
 	@Autowired
 	private KeywordRepository keywordRepository;
 	
-	private static final String path = "/home/thaina/TCC/keywords.txt";
+	private static final String path = "/keywords.txt";
 	private final String keywords[] = new FileManager().getKeywords(path);
 	
 	@Override

@@ -1,15 +1,14 @@
-package com.processamentotweets.domain;
+package com.processamentotweets.domain.keyword;
 
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
-
 @Entity
-@Table(name = "Keyword")
+@Table(name = "Keyword", schema = "Keyword")
 public class Keyword implements Serializable {
 	private static final long serialVersionUID = 100835320792986936L;
 	

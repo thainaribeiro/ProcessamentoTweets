@@ -1,15 +1,14 @@
-package com.processamentotweets.domain;
+package com.processamentotweets.domain.tweets;
 
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
-
 @Entity
-@Table(name = "Tweets")
+@Table(name = "Tweets", schema = "Tweets")
 public class Tweets implements Serializable {
 	private static final long serialVersionUID = 100835320792986936L;
 	
